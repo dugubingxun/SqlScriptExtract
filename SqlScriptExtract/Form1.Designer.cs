@@ -49,14 +49,10 @@ namespace SqlScriptExtract
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.prgbar = new System.Windows.Forms.ProgressBar();
             this.txtscrip = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabdanju = new System.Windows.Forms.TabPage();
-            this.tabcaidan = new System.Windows.Forms.TabPage();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -264,36 +260,6 @@ namespace SqlScriptExtract
             this.txtscrip.Size = new System.Drawing.Size(651, 241);
             this.txtscrip.TabIndex = 8;
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabdanju);
-            this.tabControl1.Controls.Add(this.tabcaidan);
-            this.tabControl1.Location = new System.Drawing.Point(681, 21);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(321, 599);
-            this.tabControl1.TabIndex = 2;
-            // 
-            // tabdanju
-            // 
-            this.tabdanju.Location = new System.Drawing.Point(4, 22);
-            this.tabdanju.Name = "tabdanju";
-            this.tabdanju.Padding = new System.Windows.Forms.Padding(3);
-            this.tabdanju.Size = new System.Drawing.Size(313, 573);
-            this.tabdanju.TabIndex = 0;
-            this.tabdanju.Text = "单据";
-            this.tabdanju.UseVisualStyleBackColor = true;
-            // 
-            // tabcaidan
-            // 
-            this.tabcaidan.Location = new System.Drawing.Point(4, 22);
-            this.tabcaidan.Name = "tabcaidan";
-            this.tabcaidan.Padding = new System.Windows.Forms.Padding(3);
-            this.tabcaidan.Size = new System.Drawing.Size(313, 573);
-            this.tabcaidan.TabIndex = 1;
-            this.tabcaidan.Text = "菜单";
-            this.tabcaidan.UseVisualStyleBackColor = true;
-            // 
             // bgWorker
             // 
             this.bgWorker.WorkerReportsProgress = true;
@@ -306,8 +272,7 @@ namespace SqlScriptExtract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 632);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(688, 632);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -318,7 +283,6 @@ namespace SqlScriptExtract
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -341,9 +305,6 @@ namespace SqlScriptExtract
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtscrip;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabdanju;
-        private System.Windows.Forms.TabPage tabcaidan;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox chkmemo;
         private System.Windows.Forms.CheckBox chkdel;
