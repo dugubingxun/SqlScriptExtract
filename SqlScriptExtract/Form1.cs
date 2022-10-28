@@ -23,8 +23,23 @@ namespace SqlScriptExtract
         {
             try {
                 //--  SqlServer  MySql  Oracle
-                string strtype = "SqlServer";
-                string strlk = "Server="+txtserver.Text +";Database=master;User ID="+txtuser.Text +";Password='"+txtpwd.Text +"'"; //sqlserver
+                //string strtype = "SqlServer";
+                string strtype = cmbdatatype.Text;
+                string strlk = "";
+                switch (strtype)
+                {
+                    case "SqlServer":
+                         strlk = "Server=" + txtserver.Text + (txtport.Text ==""?"": ","+txtport.Text) + ";Database=master;User ID=" + txtuser.Text + ";Password='" + txtpwd.Text + "'"; //sqlserver
+                        break;
+                    case "MySql":
+                        strlk = "server=" + txtserver.Text + "; port=" + txtport.Text + "; user id=" + txtuser.Text + "; password=" + txtpwd.Text + "; database=" + cmbdatabase.Text + ";"; //mysql  // database="+cmbdatabase.Text +";
+                        break;
+                    case "Oracle":
+                        strlk = "Provider=OraOLEDB.Oracle.1;Data Source=(DESCRIPTION = (ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = " + txtserver.Text + ")(PORT = " + txtport.Text + "))) (CONNECT_DATA =(SERVICE_NAME=" + cmbdatabase.Text + ")));User Id=" + txtuser.Text + ";Password=" + txtpwd.Text + ";";
+                        break;
+                }
+                
+               // 1521   3306
                 // string strlk = "Provider=OraOLEDB.Oracle.1;Data Source=(DESCRIPTION = (ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = "+txtserver.Text +")(PORT = 1521))) (CONNECT_DATA =(SERVICE_NAME=cmshn)));User Id="+txtuser.Text +";Password="+txtpwd.Text +";"; //oracle
                 // string strlk ="server="+txtserver.Text +"; user id="+txtuser.Text +"; password="+txtpwd.Text +"; database=plusoft_test;"; //mysql
 
@@ -103,13 +118,35 @@ namespace SqlScriptExtract
         {
             try
             {
-                #region//sqlserver
-                string strtype = "SqlServer";
-                string strlk = "Server=" + txtserver.Text + ";Database=" + cmbdatabase.Text + ";User ID=" + txtuser.Text + ";Password='" + txtpwd.Text + "'"; //sqlserver
-                string strsql = txtsql.Text;                                                                                                                                        // string strlk = "Provider=OraOLEDB.Oracle.1;Data Source=(DESCRIPTION = (ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = "+txtserver.Text +")(PORT = 1521))) (CONNECT_DATA =(SERVICE_NAME=cmshn)));User Id="+txtuser.Text +";Password="+txtpwd.Text +";"; //oracle
+                #region//数据
+
+                string strtype = cmbdatatype.Text;
+                string strlk = "";
+                switch (strtype)
+                {
+                    case "SqlServer":
+                        strlk = "Server=" + txtserver.Text + (txtport.Text == "" ? "" : "," + txtport.Text) + ";Database=master;User ID=" + txtuser.Text + ";Password='" + txtpwd.Text + "'"; //sqlserver
+                        break;
+                    case "MySql":
+                        strlk = "server=" + txtserver.Text + "; port=" + txtport.Text + "; user id=" + txtuser.Text + "; password=" + txtpwd.Text + "; database=" + cmbdatabase.Text + ";"; //mysql  // database="+cmbdatabase.Text +";
+                        break;
+                    case "Oracle":
+                        strlk = "Provider=OraOLEDB.Oracle.1;Data Source=(DESCRIPTION = (ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = " + txtserver.Text + ")(PORT = " + txtport.Text + "))) (CONNECT_DATA =(SERVICE_NAME=" + cmbdatabase.Text + ")));User Id=" + txtuser.Text + ";Password=" + txtpwd.Text + ";";
+                        break;
+                }
+                //string strtype = "SqlServer";
+                //string strlk = "Server=" + txtserver.Text + ";Database=" + cmbdatabase.Text + ";User ID=" + txtuser.Text + ";Password='" + txtpwd.Text + "'"; //sqlserver
+                string strsql = txtsql.Text;    // string strlk = "Provider=OraOLEDB.Oracle.1;Data Source=(DESCRIPTION = (ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = "+txtserver.Text +")(PORT = 1521))) (CONNECT_DATA =(SERVICE_NAME=cmshn)));User Id="+txtuser.Text +";Password="+txtpwd.Text +";"; //oracle
+                string strfieldlt = txtfieldflt.Text;
                 ArrayList notcols = new ArrayList();                                                                                                                                                                   // string strlk ="server="+txtserver.Text +"; user id="+txtuser.Text +"; password="+txtpwd.Text +"; database=plusoft_test;"; //mysql
                 string[] sqlitem = strsql.ToLower().Split(' ');
-
+                string[] fieldflt = strfieldlt.ToLower().Split(',');
+                foreach (string strfield in fieldflt)
+                {
+                    string strfieldflt = strfield.ToLower();
+                    notcols.Add(strfieldflt);
+                }
+                
                 if (ischang == true)
                 {
                     MessageBox.Show("请重新登陆后再进行取数！");
@@ -276,30 +313,67 @@ namespace SqlScriptExtract
 
                     if (mylink.dbState == true)
                     {
-                        #region //获取不插入字段
-                        //MessageBox.Show("连接成功！");
-                        //btnLogin.Enabled = false;
                         mylink.EndConn();
-                        //获取表ID
-                        ArrayList tableinfos = mylink.Select("select *  from Sysobjects where  type='U' and  name='" + strtablename + "' ");
-                        if (tableinfos.Count > 0)
+                        switch (cmbdatatype.Text)
                         {
-                            Hashtable tableinfo = (Hashtable)tableinfos[0];
-                            string strtableid = tableinfo["id"].ToString();
-                            //根据表ID查找是否有自增以及时间戳
-                            ArrayList tmpnotcols = mylink.Select("select * from  syscolumns  where id=" + strtableid + " and status in(128,40) ");
-                            foreach (Hashtable notc in tmpnotcols)
-                            {
-                                string strcol = notc["name"].ToString().ToLower();
-                                notcols.Add(strcol);
-                            }
+                            case "SqlServer":
+                                #region //获取不插入字段 Sqlserver
+                                //获取表ID
+                                ArrayList tableinfos = mylink.Select("select *  from Sysobjects where  type='U' and  name='" + strtablename + "' ");
+                                if (tableinfos.Count > 0)
+                                {
+                                    Hashtable tableinfo = (Hashtable)tableinfos[0];
+                                    string strtableid = tableinfo["id"].ToString();
+                                    //根据表ID查找是否有自增以及时间戳
+                                    ArrayList tmpnotcols = mylink.Select("select * from  syscolumns  where id=" + strtableid + " and status in(128,40) ");
+                                    foreach (Hashtable notc in tmpnotcols)
+                                    {
+                                        string strcol = notc["name"].ToString().ToLower();
+                                        notcols.Add(strcol);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("获取表信息失败！");
+                                    return;
+                                }
+                                #endregion
+                                break;
+                            case "Oracle":
+                                #region //获取不插入字段 oracle
+
+                                //表的查询语句
+                                //select * from all_tables where owner='用户名' all_tables查出来是查得所有用户下的表，当然也包括你登录的用下的表，然后加一个where你要查的那个用户名就可以了。（记得用户名要大写）
+                                //;   select * from user_tables; 查的单纯是你所登录的用户下的表，不会显示其他用户下的表。;
+                                //select * from tabs;
+                                //根据表ID查找是否有自增以及时间戳
+                                //select t.table_name,  --表名 t.column_name, --字段名 t.data_type,   --字段类型  t.data_length-- 字段长度 from  user_tab_columns t where   t.table_name = '表名';
+                                //没有查出怎么样就不让往进插入值
+                                //ArrayList tmpnotcolsora = mylink.Select("SELECT *  FROM user_tab_columns WHERE  table_name = '" + strtablename + "' ");// AND  (extra='auto_increment' OR data_type='timestamp')
+                                //foreach (Hashtable notc in tmpnotcolsora)
+                                //    {
+                                //        string strcol = notc["column_name"].ToString().ToLower();
+                                //        notcols.Add(strcol);
+                                //    }
+                              
+                                #endregion
+                                break;
+                            case "MySql":
+                                #region //获取不插入字段 mysql
+                                ////select  table_name, table_type, `engine` from information_schema.tables where 1 = 1  and table_schema = '数据库' ;
+                                ArrayList tmpnotcolsmysql = mylink.Select("SELECT *  FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '" + cmbdatabase.Text + "' AND TABLE_NAME = '" + strtablename + "' AND  (extra='auto_increment' OR data_type='timestamp') ");
+                                foreach (Hashtable notc in tmpnotcolsmysql)
+                                {
+                                    string strcol = notc["column_name"].ToString().ToLower();
+                                    notcols.Add(strcol);
+                                }
+                                #endregion
+                                break;
+                                
                         }
-                        else
-                        {
-                            MessageBox.Show("获取表信息失败！");
-                            return;
-                        }
-                        #endregion
+
+
+
 
                         //
                         if (chkdel.Checked)
@@ -530,6 +604,33 @@ namespace SqlScriptExtract
                 MessageBox.Show("处理终止!");
             }
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cmbdatatype.Items.Clear();
+            cmbdatatype.Items.Add("SqlServer");
+            cmbdatatype.Items.Add("Oracle");
+            cmbdatatype.Items.Add("MySql");
+            cmbdatatype.Text = "SqlServer";
+
+            //txtport.Text = "1433";
+        }
+
+        private void cmbdatatype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cmbdatatype.Text )
+            {
+                case "SqlServer":
+                    txtport.Text = "1433";
+                    break;
+                case "Oracle":
+                    txtport.Text = "1521";
+                    break;
+                case "MySql":
+                    txtport.Text = "3306";
+                    break;
+            }
         }
     }
 }

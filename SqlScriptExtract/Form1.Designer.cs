@@ -50,6 +50,12 @@ namespace SqlScriptExtract
             this.prgbar = new System.Windows.Forms.ProgressBar();
             this.txtscrip = new System.Windows.Forms.TextBox();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbdatatype = new System.Windows.Forms.ComboBox();
+            this.txtport = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtfieldflt = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -57,6 +63,8 @@ namespace SqlScriptExtract
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.txtport);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.btnclear);
             this.groupBox1.Controls.Add(this.btnstop);
@@ -80,11 +88,15 @@ namespace SqlScriptExtract
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtfieldflt);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.cmbdatatype);
+            this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.chkmemo);
             this.groupBox3.Controls.Add(this.chkdel);
             this.groupBox3.Location = new System.Drawing.Point(257, 20);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(256, 127);
+            this.groupBox3.Size = new System.Drawing.Size(256, 144);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "选项";
@@ -94,7 +106,7 @@ namespace SqlScriptExtract
             this.chkmemo.AutoSize = true;
             this.chkmemo.Checked = true;
             this.chkmemo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkmemo.Location = new System.Drawing.Point(19, 52);
+            this.chkmemo.Location = new System.Drawing.Point(19, 43);
             this.chkmemo.Name = "chkmemo";
             this.chkmemo.Size = new System.Drawing.Size(72, 16);
             this.chkmemo.TabIndex = 1;
@@ -156,23 +168,23 @@ namespace SqlScriptExtract
             // cmbdatabase
             // 
             this.cmbdatabase.FormattingEnabled = true;
-            this.cmbdatabase.Location = new System.Drawing.Point(85, 124);
+            this.cmbdatabase.Location = new System.Drawing.Point(85, 142);
             this.cmbdatabase.Name = "cmbdatabase";
             this.cmbdatabase.Size = new System.Drawing.Size(155, 20);
             this.cmbdatabase.TabIndex = 8;
             // 
             // txtsql
             // 
-            this.txtsql.Location = new System.Drawing.Point(6, 164);
+            this.txtsql.Location = new System.Drawing.Point(6, 170);
             this.txtsql.Multiline = true;
             this.txtsql.Name = "txtsql";
             this.txtsql.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtsql.Size = new System.Drawing.Size(651, 138);
+            this.txtsql.Size = new System.Drawing.Size(651, 132);
             this.txtsql.TabIndex = 7;
             // 
             // txtpwd
             // 
-            this.txtpwd.Location = new System.Drawing.Point(85, 93);
+            this.txtpwd.Location = new System.Drawing.Point(85, 114);
             this.txtpwd.Name = "txtpwd";
             this.txtpwd.Size = new System.Drawing.Size(155, 21);
             this.txtpwd.TabIndex = 6;
@@ -180,7 +192,7 @@ namespace SqlScriptExtract
             // 
             // txtuser
             // 
-            this.txtuser.Location = new System.Drawing.Point(85, 59);
+            this.txtuser.Location = new System.Drawing.Point(85, 86);
             this.txtuser.Name = "txtuser";
             this.txtuser.Size = new System.Drawing.Size(155, 21);
             this.txtuser.TabIndex = 5;
@@ -199,7 +211,7 @@ namespace SqlScriptExtract
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 128);
+            this.label4.Location = new System.Drawing.Point(21, 146);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 12);
             this.label4.TabIndex = 3;
@@ -208,7 +220,7 @@ namespace SqlScriptExtract
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 97);
+            this.label3.Location = new System.Drawing.Point(21, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 2;
@@ -217,7 +229,7 @@ namespace SqlScriptExtract
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 63);
+            this.label2.Location = new System.Drawing.Point(21, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 1;
@@ -268,6 +280,57 @@ namespace SqlScriptExtract
             this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "数据库类型";
+            // 
+            // cmbdatatype
+            // 
+            this.cmbdatatype.FormattingEnabled = true;
+            this.cmbdatatype.Location = new System.Drawing.Point(86, 66);
+            this.cmbdatatype.Name = "cmbdatatype";
+            this.cmbdatatype.Size = new System.Drawing.Size(121, 20);
+            this.cmbdatatype.TabIndex = 3;
+            this.cmbdatatype.SelectedIndexChanged += new System.EventHandler(this.cmbdatatype_SelectedIndexChanged);
+            // 
+            // txtport
+            // 
+            this.txtport.Location = new System.Drawing.Point(85, 58);
+            this.txtport.Name = "txtport";
+            this.txtport.Size = new System.Drawing.Size(155, 21);
+            this.txtport.TabIndex = 15;
+            this.txtport.Text = "sa";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "端口号";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 97);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(185, 12);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "下面写过滤掉的字段英文逗号隔开";
+            // 
+            // txtfieldflt
+            // 
+            this.txtfieldflt.Location = new System.Drawing.Point(7, 116);
+            this.txtfieldflt.Name = "txtfieldflt";
+            this.txtfieldflt.Size = new System.Drawing.Size(243, 21);
+            this.txtfieldflt.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -277,6 +340,7 @@ namespace SqlScriptExtract
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "脚本抽取";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -310,6 +374,12 @@ namespace SqlScriptExtract
         private System.Windows.Forms.CheckBox chkdel;
         private System.ComponentModel.BackgroundWorker bgWorker;
         private System.Windows.Forms.ProgressBar prgbar;
+        private System.Windows.Forms.ComboBox cmbdatatype;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtport;
+        private System.Windows.Forms.TextBox txtfieldflt;
+        private System.Windows.Forms.Label label7;
     }
 }
 
