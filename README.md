@@ -1,2 +1,3 @@
 # SqlScriptExtract
 把查询的数据转换成insert语句的简单小工具
+目前只支持sqlsever数据库
