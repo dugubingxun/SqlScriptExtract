@@ -1,0 +1,11 @@
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\bin\Debug\SqlScriptExtract.exe
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\bin\Debug\SqlScriptExtract.pdb
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.csproj.AssemblyReference.cache
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.Form1.resources
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.Properties.Resources.resources
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.csproj.GenerateResource.cache
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.csproj.CoreCompileInputs.cache
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.exe
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.pdb
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\bin\Debug\MySql.Data.dll
+D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.csproj.CopyComplete
