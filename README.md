@@ -1,3 +1,4 @@
 # SqlScriptExtract
 把查询的数据转换成insert语句的简单小工具
-目前只支持sqlsever数据库
+目前只支持sqlsever/mysql/oracle数据库
+oracle数据库不支持过滤自增行及时间戳
