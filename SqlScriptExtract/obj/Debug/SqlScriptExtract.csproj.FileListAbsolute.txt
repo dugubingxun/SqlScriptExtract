@@ -9,3 +9,13 @@ D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj
 D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.pdb
 D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\bin\Debug\MySql.Data.dll
 D:\孟氏\孟氏\自主开发\脚本抽取\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.csproj.CopyComplete
+E:\开源\SqlScriptExtract\SqlScriptExtract\bin\Debug\SqlScriptExtract.exe
+E:\开源\SqlScriptExtract\SqlScriptExtract\bin\Debug\SqlScriptExtract.pdb
+E:\开源\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.csproj.AssemblyReference.cache
+E:\开源\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.Form1.resources
+E:\开源\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.Properties.Resources.resources
+E:\开源\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.csproj.GenerateResource.cache
+E:\开源\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.csproj.CoreCompileInputs.cache
+E:\开源\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.csproj.CopyComplete
+E:\开源\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.exe
+E:\开源\SqlScriptExtract\SqlScriptExtract\obj\Debug\SqlScriptExtract.pdb

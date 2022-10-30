@@ -125,7 +125,7 @@ namespace SqlScriptExtract
                 switch (strtype)
                 {
                     case "SqlServer":
-                        strlk = "Server=" + txtserver.Text + (txtport.Text == "" ? "" : "," + txtport.Text) + ";Database=master;User ID=" + txtuser.Text + ";Password='" + txtpwd.Text + "'"; //sqlserver
+                        strlk = "Server=" + txtserver.Text + (txtport.Text == "" ? "" : "," + txtport.Text) + ";Database=" + cmbdatabase.Text + ";User ID=" + txtuser.Text + ";Password='" + txtpwd.Text + "'"; //sqlserver
                         break;
                     case "MySql":
                         strlk = "server=" + txtserver.Text + "; port=" + txtport.Text + "; user id=" + txtuser.Text + "; password=" + txtpwd.Text + "; database=" + cmbdatabase.Text + ";"; //mysql  // database="+cmbdatabase.Text +";
@@ -139,7 +139,18 @@ namespace SqlScriptExtract
                 string strsql = txtsql.Text;    // string strlk = "Provider=OraOLEDB.Oracle.1;Data Source=(DESCRIPTION = (ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = "+txtserver.Text +")(PORT = 1521))) (CONNECT_DATA =(SERVICE_NAME=cmshn)));User Id="+txtuser.Text +";Password="+txtpwd.Text +";"; //oracle
                 string strfieldlt = txtfieldflt.Text;
                 ArrayList notcols = new ArrayList();                                                                                                                                                                   // string strlk ="server="+txtserver.Text +"; user id="+txtuser.Text +"; password="+txtpwd.Text +"; database=plusoft_test;"; //mysql
-                string[] sqlitem = strsql.ToLower().Split(' ');
+                string[] sqlitemkg = strsql.ToLower().Split(' ');
+                //string[] sqlitemhh = strsql.ToLower().Split('\n');
+                ArrayList sqlitem=new ArrayList();
+                foreach (string strfg in sqlitemkg)
+                {
+                    string[] sqlitemhh = strfg.Split('\n');
+                    foreach (string strh in sqlitemhh)
+                    {
+                        sqlitem.Add(strh);
+                    }
+                }
+
                 string[] fieldflt = strfieldlt.ToLower().Split(',');
                 foreach (string strfield in fieldflt)
                 {
@@ -186,7 +197,7 @@ namespace SqlScriptExtract
                             isby = 1;
                         }
 
-                        string strchar = stritm.Replace(" ", "").Replace("\t", "").Replace("\n", "");
+                        string strchar = stritm.Replace(" ", "").Replace("\t", "").Replace("\n", "").Replace("\r", "");
                         #region//from
                         if (isfrom)
                         {
@@ -200,7 +211,7 @@ namespace SqlScriptExtract
                                     {
                                         for (int i = 1; i < sqlfromT.Length; i++)
                                         {
-                                            strtablename += sqlfromT[i];
+                                            strtablename += sqlfromT[i].Replace(" ", "").Replace("\t", "").Replace("\n", "").Replace("\r", "");
                                         }
                                     }
                                     else
@@ -210,14 +221,14 @@ namespace SqlScriptExtract
                                         {
                                             for (int i = 1; i < sqlfromN.Length; i++)
                                             {
-                                                strtablename += sqlfromN[i];
+                                                strtablename += sqlfromN[i].Replace(" ", "").Replace("\t", "").Replace("\n", "").Replace("\r", "");
                                             }
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    strtablename += stritm;
+                                    strtablename += stritm.Replace(" ", "").Replace("\t", "").Replace("\n", "").Replace("\r", "");
                                 }
                             }
                         }
@@ -319,7 +330,7 @@ namespace SqlScriptExtract
                             case "SqlServer":
                                 #region //获取不插入字段 Sqlserver
                                 //获取表ID
-                                ArrayList tableinfos = mylink.Select("select *  from Sysobjects where  type='U' and  name='" + strtablename + "' ");
+                                ArrayList tableinfos = mylink.Select("select * from Sysobjects where type='U' and name='" + strtablename + "' ");
                                 if (tableinfos.Count > 0)
                                 {
                                     Hashtable tableinfo = (Hashtable)tableinfos[0];
@@ -374,7 +385,7 @@ namespace SqlScriptExtract
 
 
 
-
+                        txtscrip.Clear();
                         //
                         if (chkdel.Checked)
                         {
