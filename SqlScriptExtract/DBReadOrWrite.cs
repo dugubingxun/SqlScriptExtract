@@ -362,7 +362,7 @@ namespace SqlScriptExtract
             else if (_dbType == "SqlServer")
             {
                 MatchCollection ms = Regex.Matches(sql, @"@\w+");
-                int i = 1;
+                //int i = 1;
                 strp = new String[ms.Count];
                 foreach (Match m in ms)
                 {
